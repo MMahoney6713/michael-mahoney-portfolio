@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Michael Mahoney</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+</head>
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<div id="main">
+			<div class="inner">
+
+				<!-- Header -->
+				<header id="header">
+				</header>
+
+				<!-- Banner -->
+				<section id="banner">
+					<div class="content">
+						<header>
+							<h1>Hi, I’m Michael.</h1>
+							<!-- <p>&lt; Web Developer &gt;</p> -->
+						</header>
+						<p>I'm a Software Developer, Product Engineer, and People Developer with a strong interest in full-stack and back-end development. In my programming work I leverage my years of experience as a mechanical engineer to build clean, efficient code that is rigorously tested. </p>
+						<p>In particular, I'm excited about building software that helps people grow. With strengths in seeing talent in people and helping to develop them, I look forward to using my skills to see others grow.</p>
+					</div>
+					<span class="image object">
+						<img src="{{ url_for('static', filename='images/headshot.jpg') }}" alt="Image of Michael Mahoney" />
+					</span>
+				</section>
+
+				<!-- Section -->
+				<section>
+					<header class="major">
+						<h2>What I like to work on:</h2>
+					</header>
+					<div class="features">
+						<article>
+							<span class="icon solid fa-laptop-code"></span>
+							<div class="content">
+								<h3>Full-Stack Web Development</h3>
+								<p>I bring your content to life by leveraging my skills in product design and
+									software engineering.</p>
+							</div>
+						</article>
+						<article>
+							<span class="icon solid"><i class="fab fa-python"></i></span>
+							<div class="content">
+								<h3>Back-end with Python</h3>
+								<p>Experienced with leveraging the tools of Flask/SQLAlchemy and Django to develop
+									secure back-end software and RESTful APIs.</p>
+							</div>
+						</article>
+						<article>
+							<span class="icon solid"><i class="fab fa-js-square"></i></span>
+							<div class="content">
+								<h3>JavaScript/HTML/CSS</h3>
+								<p>Building sophisticated, event-driven applications by manipulating webpages and
+									fetching external data from APIs. </p>
+							</div>
+						</article>
+						<article>
+							<span class="icon solid fa-server"></span>
+							<div class="content">
+								<h3>PostgreSQL/MySQL</h3>
+								<p>Making performant database models and queries</p>
+							</div>
+						</article>
+					</div>
+				</section>
+
+				<!-- Section -->
+				<section>
+					<header class="major">
+						<h2>Recent Projects:</h2>
+					</header>
+					<div class="posts">
+						<article>
+							<a href="{{ url_for('static', filename='projects/capstone1/capstone1.html') }}" class="image">
+								<img src="{{ url_for('static', filename='projects/capstone1/Images/capstone1.jpg') }}" alt="Image of the project" />
+							</a>
+							<h3>On Purpose</h3>
+							<p>A web application goal planner based on creating 'milestones' according to your life mission and the goals you make to get you there. </p>
+							<ul class="actions">
+								<li><a href="{{ url_for('static', filename='projects/capstone1/capstone1.html') }}" class="button">Details</a></li>
+							</ul>
+						</article>
+						<article>
+							<a href="{{ url_for('static', filename='projects/Warbler/warbler.html') }}" class="image">
+								<img src="{{ url_for('static', filename='projects/Warbler/Images/warbler.jpg') }}" alt="Image of the project" />
+							</a>
+							<h3>Warbler: A Twitter Clone</h3>
+							<p>Extending the functionality of a Twitter clone; gaining comfort with understanding/cleaning an existing codebase as well as adding additional model functionality.</p>
+							<ul class="actions">
+								<li><a href="{{ url_for('static', filename='projects/Warbler/warbler.html') }}" class="button">Details</a></li>
+							</ul>
+						</article>
+					</div>
+				</section>
+
+			</div>
+		</div>
+
+		<!-- Sidebar -->
+		<div id="sidebar">
+			<div class="inner">
+				<!-- Menu -->
+				<nav id="menu">
+					<header class="major">
+						<h2>Menu</h2>
+					</header>
+					<ul>
+						<li><a href="{{ url_for('static', filename='index.html') }}">Home</a></li>
+						<li><a href="{{ url_for('static', filename='about-me.html') }}">About Me</a></li>
+						<li><a href="{{ url_for('static', filename='projects.html') }}">Projects</a></li>
+						<li><a href="{{ url_for('static', filename='resume.html') }}">Resume</a></li>
+					</ul>
+				</nav>
+
+				<!-- Section -->
+				<section>
+					<header class="major">
+						<h2>Connect with me</h2>
+					</header>
+					<p>I'm always looking to connect with folks and hear about what you're up to, what you think of my
+						projects, and how software can work to improve the lives of people. If you'd like to connect
+						with me, then please reach out!</p>
+					<ul class="contact">
+						<li class="icon solid fa-envelope"><a
+								href="mailto:michael.mahoney3315@gmail.com">michael.mahoney3315@gmail.com</a></li>
+						<li class="icon brands fa-linkedin-in"><a
+								href="https://www.linkedin.com/in/michael-mahoney67/">michael-mahoney67/</a></li>
+						<li class="icon brands fa-github"><a href="https://github.com/MMahoney6713">MMahoney6713/</a>
+						</li>
+						<!-- <li class="icon brands fa-medium-m"><a href="#">MMahoney6713/</a></li> -->
+					</ul>
+				</section>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<p class="copyright">Template By: <a href="https://html5up.net">HTML5UP</a>.</p>
+					<p class="copyright">Design By: Michael Mahoney</p>
+				</footer>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+</body>
+</html>
