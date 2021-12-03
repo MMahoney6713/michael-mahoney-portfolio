@@ -1,13 +1,13 @@
 [Unit]
-Description=Gunicorn instance to serve myproject
+Description=Gunicorn instance to serve app
 After=network.target
 
 [Service]
 User=pi
 Group=www-data
-WorkingDirectory=/home/Desktop/Portfolio/michael-mahoney-portfolio
-Environment="PATH=/home/Desktop/Portfolio/michael-mahoney-portfolio/venv/bin"
-ExecStart=/home/Desktop/Portfolio/michael-mahoney-portfolio/venv/bin/gunicorn --workers 3 --bind unix:myproject.sock -m 007 wsgi:app
+WorkingDirectory=/home/pi/Desktop/Portfolio/michael-mahoney-portfolio
+Environment="PATH=/home/pi/Desktop/Portfolio/michael-mahoney-portfolio/env/bin"
+ExecStart=/home/pi/Desktop/Portfolio/michael-mahoney-portfolio/env/bin/gunicorn --workers 4 --bind unix:myproject.sock -m 007 wsgi:app
 
 [Install]
 WantedBy=multi-user.target
