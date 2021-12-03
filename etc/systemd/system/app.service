@@ -10,10 +10,10 @@ User=pi
 # give group ownership to the www-data group so that Nginx can communicate easily with the Gunicorn processes.
 Group=www-data
 # We'll then map out the working directory and set the PATH environmental variable so that the init system knows where our the executables for the process are located (within our virtual environment).
-WorkingDirectory=~/Desktop/Portfolio/michael-mahoney-portfolio
-Environment="PATH=~/Desktop/Portfolio/michael-mahoney-portfolio/venv/bin"
+WorkingDirectory=/Desktop/Portfolio/michael-mahoney-portfolio
+Environment="PATH=/Desktop/Portfolio/michael-mahoney-portfolio/venv/bin"
 # We'll then specify the commanded to start the service
-ExecStart=~/Desktop/Portfolio/michael-mahoney-portfolio/venv/bin/gunicorn --workers 4 --bind unix:app.sock -m 007 wsgi:app
+ExecStart=/Desktop/Portfolio/michael-mahoney-portfolio/venv/bin/gunicorn --workers 4 --bind unix:app.sock -m 007 wsgi:app
 # This will tell systemd what to link this service to if we enable it to start at boot. We want this service to start when the regular multi-user system is up and running:
 [Install]
 WantedBy=multi-user.target
