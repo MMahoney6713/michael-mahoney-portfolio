@@ -2401,7 +2401,7 @@ button,
 }
 
   .spotlight.style1 .content {
-    padding: 0 7rem 0 0;
+    padding: 0 2rem 0 0;
     -moz-align-self: center;
     -webkit-align-self: center;
     -ms-align-self: center;
@@ -2452,7 +2452,7 @@ button,
   @media screen and (max-width: 1680px) {
 
     .spotlight.style1 .content {
-      padding: 0 5rem 0 0 ;
+      padding: 0 2rem 0 0 ;
     }
 
   }
@@ -2460,7 +2460,7 @@ button,
   @media screen and (max-width: 1280px) {
 
     .spotlight.style1 .content {
-      padding: 0 4rem 0 0 ;
+      padding: 0 2rem 0 0 ;
     }
 
   }
@@ -2468,7 +2468,7 @@ button,
   @media screen and (max-width: 980px) {
 
     .spotlight.style1 .content {
-      padding: 3.70 3rem 1.70 0 ;
+      padding: 3.70 2rem 1.70 0 ;
       width: 50%;
       min-width: 0;
     }

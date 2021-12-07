@@ -5,50 +5,20 @@
 {% endblock %}
 
 {% block main %}
-
-<!-- Header -->
-<header id="header">
-
-</header>
-
-<section id="content">
-    <header class="main">
-        <h1>Who I am</h1>
+<section>
+    
+    <header id="header">
+        <h1>About Me</h1>
     </header>
 
-    <span class="image main"><img src="{{ url_for('static', filename='images/about-me.jpg') }}" alt="" /></span>
+    <br>
+    <br>
 
-
-    <hr class="major" />
-
-    <h2>Interdum sed dapibus</h2>
-    <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque
-        venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim
-        auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque
-        in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar
-        mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque
-        enim turpis, hendrerit.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class
-        aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam
-        tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc
-        ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non,
-        bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus.
-        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In
-        non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor
-        imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet.
-        Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at,
-        elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
-
-    <hr class="major" />
-
-    <h2>Magna etiam veroeros</h2>
+    
     <div class="spotlight style1 orient-left content-align-left image-position-center">
         <div class="content">
-            <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-                interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-                egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-                Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+            <h2>Where I'm Coming From</h2>
+            <p>I grew up in Upstate New York, near Saratoga Springs, where I enjoyed the beautiful fall foliage, summers on/near the lakes, long drives through hilly roads, and the snowy winters. I went to school for Mechanical Engineering at Cornell University, where I spent my time leading a team building <a href="https://cuauv.org">robot submarines</a> and connecting with students through Cru, a Christian fellowship. While working as a Product Engineer for an automotive company near Cornell, it was through Cru that I met my wonderful wife, Cynthia. We're now settled into our home in the San Francisco Bay Area, excited for the future chapters of our life together!</p>
         </div>
         <span class="image">
             <img src="{{ url_for('static', filename='images/skiing.jpg') }}" alt="" />
@@ -57,16 +27,30 @@
 
     <hr class="major" />
 
-    <h2>Magna etiam veroeros</h2>
+    <h2>(Some of my many) Interests</h2>
     <div class="spotlight style1 orient-right content-align-left image-position-center">
         <div class="content">
-            <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-                interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-                egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-                Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+            <h3>Rock Climbing</h3>
+            <p>Since moving to the Bay Area, we've found that many folks around here are avid rock climbers. Having previously thought that rock climbing was about doing one pull-up after another, I've enjoyed finding that it actually involves a lot of problem solving and technique. You'll find me at Planet Granite Santa Clara, where I'm working on V3's/V4's and eagerly learning and practicing.</p>
+            <h3>Coffee (Roasting, Brewing)</h3>
+            <p>I've been roasting my own coffee on and off since mid-2020, and am enjoying immersing myself in the art of coffee roasting and brewing. I love the DIY community around the at-home-coffee-roasting scene, and am currently working on perfecting a stovetop-popcorn-popper roast as well as a chemex brew.</p>
         </div>
         <span class="image">
-            <img src="{{ url_for('static', filename='images/unsplash5.jpg') }}" alt="" />
+            <img src="{{ url_for('static', filename='images/about/climbing1.gif') }}" alt="" />
+        </span>
+    </div>
+
+    <br/>
+
+    <div class="spotlight style1 orient-left content-align-left image-position-center">
+        <div class="content">
+            <h3 class="my-4">3D printing</h3>
+            <p>I've played around with 3D printers since college, starting with FDM (filament-based) printers. Since 2020 I've owned two 3D printers, an FDM printer and an SLA (resin-based) printer, and have enjoyed learning how to use and optimize each for different applications. I'll design and print household accessories, tiny robots, cases for electronics and 3D scans of people/things. Keep a lookout in my projects section - soon I hope to design and 3D print my own 3D printers, CNC routers, and laser cutters</p>
+            <h3>Leadership Development</h3>
+            <p>In my time leading teams in building robot submarines, designing automotive timing drives, and launching new campus fellowships across the world, I've always enjoyed working with and developing others - you'll sometimes find me reading articles/books to grow in that. One of my favorite tools to work with is the Clifton Strengths Assessment - my strengths are Connectedness, Restorative, Developer, Intellection, and Input.</p>
+        </div>
+        <span class="image">
+            <img src="{{ url_for('static', filename='images/about/printing1.gif') }}" alt="" />
         </span>
     </div>
 

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Michael Mahoney - Projects</title>
+{% endblock %}
+
+{% block main %}
+
+<!-- Section -->
+<section>
+
+    <header id="header">
+        <h1>All Projects</h1>
+    </header>
+    <br>
+    <br>
+
+    <div class="posts">
+        <article>
+			<a href="/projects/rpi-server" class="image">
+				<img src="{{ url_for('static', filename='projects/rpi-server/rpi.jpg') }}" alt="Image of the project" />
+			</a>
+			<h3>Web Server using Raspberry Pi, Nginx, and Gunicorn</h3>
+			<p>Building my own web server to host this portfolio, my capstone projects, and any other projects I'd like to host myself.</p>
+			<ul class="actions">
+				<li><a href="/projects/rpi-server" class="button">Details</a></li>
+			</ul>
+		</article>
+		<article>
+			<a href="/projects/capstone1" class="image">
+				<img src="{{ url_for('static', filename='projects/capstone1/capstone1.jpg') }}" alt="Image of the project" />
+			</a>
+			<h3>On Purpose</h3>
+			<p>A web application goal planner based on creating 'milestones' according to your life mission and the goals you make to get you there. </p>
+			<ul class="actions">
+				<li><a href="/projects/capstone1" class="button">Details</a></li>
+			</ul>
+		</article>
+		<article>
+			<a href="/projects/warbler" class="image">
+				<img src="{{ url_for('static', filename='projects/Warbler/warbler.jpg') }}" alt="Image of the project" />
+			</a>
+			<h3>Warbler: A Twitter Clone</h3>
+			<p>Extending the functionality of a Twitter clone; gaining comfort with understanding/cleaning an existing codebase as well as adding additional model functionality.</p>
+			<ul class="actions">
+				<li><a href="/projects/warbler" class="button">Details</a></li>
+			</ul>
+		</article>
+    </div>
+</section>
+
+<hr class="major" />
+
+<!-- <section>
+    <header class="major">
+        <h2>Things I'm learning:</h2>
+    </header>
+    <div class="posts">
+        <article>
+            <a href="#" class="image"><img src="{{ url_for('static', filename='images/unsplash1.jpg') }}" alt="" /></a>
+            <h3>Interdum aenean</h3>
+            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
+                facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+            <ul class="actions">
+                <li><a href="#" class="button">More</a></li>
+            </ul>
+        </article>
+        <article>
+            <a href="#" class="image"><img src="{{ url_for('static', filename='images/unsplash2.jpg') }}" alt="" /></a>
+            <h3>Nulla amet dolore</h3>
+            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
+                facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+            <ul class="actions">
+                <li><a href="#" class="button">More</a></li>
+            </ul>
+        </article>
+        <article>
+            <a href="#" class="image"><img src="{{ url_for('static', filename='images/unsplash3.jpg') }}" alt="" /></a>
+            <h3>Tempus ullamcorper</h3>
+            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
+                facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+            <ul class="actions">
+                <li><a href="#" class="button">More</a></li>
+            </ul>
+        </article>
+    </div>
+</section> -->
+
+{% endblock %}

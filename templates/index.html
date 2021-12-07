@@ -5,24 +5,38 @@
 {% endblock %}
 
 {% block main %}
+
+<section>
+
 <!-- Header -->
 <header id="header">
+	<h1>Hi, I'm Michael.</h1>
 </header>
-
 <!-- Banner -->
 <section id="banner">
-	<div class="content">
+	<div class="spotlight style1 orient-left content-align-left image-position-center">
+        <div class="content">
+            <p>I'm a Software Developer, Product Engineer, and People Developer with a strong interest in full-stack and back-end development. In my programming work I leverage my years of experience as a mechanical engineer to build clean, efficient code that is rigorously tested. </p>
+			<p>In particular, I'm excited about building software that helps people grow. With strengths in seeing talent in people and helping to develop them, I look forward to using my skills to see others grow.</p>
+        </div>
+        <span class="image">
+            <img src="{{ url_for('static', filename='images/headshot.jpg') }}" alt="Image of Michael Mahoney" />
+        </span>
+    </div>
+	<!-- <div class="content">
 		<header>
 			<h1>Hi, I’m Michael.</h1>
-			<!-- <p>&lt; Web Developer &gt;</p> -->
 		</header>
 		<p>I'm a Software Developer, Product Engineer, and People Developer with a strong interest in full-stack and back-end development. In my programming work I leverage my years of experience as a mechanical engineer to build clean, efficient code that is rigorously tested. </p>
 		<p>In particular, I'm excited about building software that helps people grow. With strengths in seeing talent in people and helping to develop them, I look forward to using my skills to see others grow.</p>
 	</div>
 	<span class="image object">
 		<img src="{{ url_for('static', filename='images/headshot.jpg') }}" alt="Image of Michael Mahoney" />
-	</span>
+	</span> -->
 </section>
+
+<br>
+<br>
 
 <!-- Section -->
 <section>
@@ -65,32 +79,46 @@
 </section>
 
 <!-- Section -->
+<br>
+<br>
 <section>
 	<header class="major">
 		<h2>Recent Projects:</h2>
 	</header>
 	<div class="posts">
 		<article>
-			<a href="{{ url_for('static', filename='projects/capstone1/capstone1.html') }}" class="image">
-				<img src="{{ url_for('static', filename='projects/capstone1/Images/capstone1.jpg') }}" alt="Image of the project" />
+			<a href="/projects/rpi-server" class="image">
+				<img src="{{ url_for('static', filename='projects/rpi-server/rpi.jpg') }}" alt="Image of the project" />
+			</a>
+			<h3>Web Server using Raspberry Pi, Nginx, and Gunicorn</h3>
+			<p>Building my own web server to host this portfolio, my capstone projects, and any other projects I'd like to host myself.</p>
+			<ul class="actions">
+				<li><a href="/projects/rpi-server" class="button">Details</a></li>
+			</ul>
+		</article>
+		<article>
+			<a href="/projects/capstone1" class="image">
+				<img src="{{ url_for('static', filename='projects/capstone1/capstone1.jpg') }}" alt="Image of the project" />
 			</a>
 			<h3>On Purpose</h3>
 			<p>A web application goal planner based on creating 'milestones' according to your life mission and the goals you make to get you there. </p>
 			<ul class="actions">
-				<li><a href="{{ url_for('static', filename='projects/capstone1/capstone1.html') }}" class="button">Details</a></li>
+				<li><a href="/projects/capstone1" class="button">Details</a></li>
 			</ul>
 		</article>
 		<article>
-			<a href="{{ url_for('static', filename='projects/Warbler/warbler.html') }}" class="image">
-				<img src="{{ url_for('static', filename='projects/Warbler/Images/warbler.jpg') }}" alt="Image of the project" />
+			<a href="/projects/warbler" class="image">
+				<img src="{{ url_for('static', filename='projects/Warbler/warbler.jpg') }}" alt="Image of the project" />
 			</a>
 			<h3>Warbler: A Twitter Clone</h3>
 			<p>Extending the functionality of a Twitter clone; gaining comfort with understanding/cleaning an existing codebase as well as adding additional model functionality.</p>
 			<ul class="actions">
-				<li><a href="{{ url_for('static', filename='projects/Warbler/warbler.html') }}" class="button">Details</a></li>
+				<li><a href="/projects/warbler" class="button">Details</a></li>
 			</ul>
 		</article>
 	</div>
+</section>
+
 </section>
 
 {% endblock %}
