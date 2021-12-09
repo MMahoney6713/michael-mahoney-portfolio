@@ -14,6 +14,7 @@
 <section id="content">
     <header class="main">
         <h1>Raspberry Pi Web Server</h1>
+        <p>December 8, 2021</p>
     </header>
 
     <span class="image main"><img src="{{ url_for('static', filename='projects/rpi-server/rpi.jpg') }}" alt="" /></span>
@@ -22,57 +23,66 @@
     <hr class="major cleared" />
 
     <h2>Background</h2>
-    <div><span class="image left"><img src="{{ url_for('static', filename='projects/Warbler/setup.JPG') }}" alt="" /></span></div>
-    <p>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
-    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+    <!-- <div><span class="image left"><img src="{{ url_for('static', filename='projects/Warbler/setup.JPG') }}" alt="" /></span></div> -->
+    <p>After completing my first capstone with Springboard (see "On Purpose", <a href="/projects/capstone1">here</a>) and  deploying it on Heroku, I realized that creating a server and hosting my own applications is a real possibility. Knowing that Heroku (or other cloud services) are just a collection of computers being loaned out for use, I wondered if it would be possible to use one of my own computers to run a server. Eventually, I could use my own server to host my own creations - portfolio, capstone projects, etc.</p> 
+        
+    <p>I stumbled into the world of Raspberry Pi over the last year, and decided that creating my own server would be the perfect thing for my Pi and to host my own portfolio (the same one you're on right now).</p>
+
+    <p><a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04">This tutorial</a>, created by Digital Ocean, was a wonderful help in setting this server up. I'll also discuss what I've learned about Gunicorn, Nginx, Securing through HTTPS, Domains and Port Forwarding through my own writing below. My Flask application can be found on <a href="https://github.com/MMahoney6713/michael-mahoney-portfolio">my Github page.</a></p>
 
 
     <hr class="major cleared" />
 
-    <h2>Part 1: Fixing features and cleaning up code</h2>
-    <p><span class="image right"><img src="{{ url_for('static', filename='projects/Warbler/setup2.jpg') }}" alt="" /></span>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
-    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+    <h2>Part 1: Creating a Flask app to manage routes for my portfolio</h2>
+    <p>To start, I downloaded a free, Bootstrap based <a href="https://html5up.net/editorial">front-end template</a> that I will be using for the styling of my website. After a few tweaks, and removing any extra stuff that I won't be needing, the basic pages of the website are ready to be brought to life with a back-end framework life Flask. </p> 
+    <p>After creating a virtual environment and installing Flask, the following kicked off my app with a simple route to show the homepage.</p>
+
+    <div class="card mb-4 ">
+        <div class="card-header text-light bg-dark  bg-gradient">
+          .../portfolio/app.py
+        </div>
+        <ul class="list-group list-group-flush ">
+          <li class="list-group-item bg-secondary text-light bg-gradient">
+            from flask import Flask, render_template <br>
+            <br>
+            app = Flask(__name__)<br>
+            app.config.from_pyfile('config.py')<br>
+            <br>
+            @app.route("/")<br>
+            def homepage():<br>
+            <span class="ml-4">return render_template("index.html")</span>
+          </li>
+        </ul>
+      </div>
+
+      <p>I'll also be needing a WSGI file, which will be used to direct Gunicorn in the next step once we have these files pulled over onto the Pi:</p>
+
+      <div class="card mb-4 ">
+        <div class="card-header text-light bg-dark  bg-gradient">
+          .../portfolio/WSGI.py
+        </div>
+        <ul class="list-group list-group-flush ">
+          <li class="list-group-item bg-secondary text-light bg-gradient">
+            from app import app <br>
+            <br>
+            if __name__ == "__main__":<br>
+            <span class="ml-4">app.run()</span>
+          </li>
+        </ul>
+      </div>
+
+      <p>I've made a Git repository for this portfolio project, and pushed this skeleton to Github to be pulled over onto the Pi.</p>
 
     <hr class="major cleared" />
 
-    <h2>Part 2: Connecting to the database, adding the "Like" button</h2>
-    <div><span class="image left"><img src="{{ url_for('static', filename='projects/Warbler/setup2.jpg') }}" alt="" /></span></div>
-    <p>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
-    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+    <h2>Part 2: Setting up my Pi with Gunicorn and Nginx</h2>
+    <p>After connecting to the Pi via SSH and accessing the terminal, I'm able to create a Git clone for the above repository, landing onto the Pi desktop as "portfolio." Here I've also created another virtual environment, and pip installed gunicorn into that environment. </p>
+    
+    <p>In order to receive incoming connections, Nginx (a reverse-proxy) is going to be used to accept those connections and decide what to do with them. In the case of this application, we'll be telling Nginx to receive http requests and deliver them to Gunicorn, which will serve the Flask application. As Gunicorn is WSGI compatible, it is often used to work with applications like Flask or Django which support WSGI as well. More information <a href="https://stackoverflow.com/questions/43044659/what-is-the-purpose-of-using-nginx-with-gunicorn#:~:text=Gunicorn%20is%20an%20application%20server,is%20in%20front%20of%20Gunicorn.">available here.</a> </p>
 
     <hr class="major cleared" />
 
-    <h2>Part 3: Adding tests</h2>
+    <h2>Part 3: Setting up Google Domains, Port Forwarding, and HTTPS</h2>
     <p><span class="image right"><img src="{{ url_for('static', filename='projects/Warbler/setup3.JPG') }}" alt="" /></span>Lorem ipsum dolor
         sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
         Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
@@ -86,9 +96,8 @@
         egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
         Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
 
-    <hr class="major cleared" />
 
-    <h2>Part 4: Further Study</h2>
+    <h2>Part 4: Future Study</h2>
     <p><span class="image right"><img src="{{ url_for('static', filename='projects/Warbler/setup3.JPG') }}" alt="" /></span>Lorem ipsum dolor
         sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
         Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
@@ -101,6 +110,8 @@
         interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
         egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
         Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+
+
 </section>
 
 {% endblock %}

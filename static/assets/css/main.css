@@ -91,7 +91,8 @@ body {
 
 /* Type */
 body, input, select, textarea {
-  color: #7f888f;
+  /* color: #7f888f; */
+  color: #666666;
   font-family: 'Inter', sans-serif;
   font-size: 13pt;
   font-weight: 400;
