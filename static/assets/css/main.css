@@ -2573,3 +2573,15 @@ button,
   #resume .image {
     width: 70%;
   }
+
+
+  /* Scrollable Content */
+  .scrollable > .list-group {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .scrollable > .list-group > .list-group-item {
+    display: inline-block;
+    float: none;
+  }

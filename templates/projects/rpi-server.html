@@ -31,13 +31,13 @@
     <p><a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04">This tutorial</a>, created by Digital Ocean, was a wonderful help in setting this server up. I'll also discuss what I've learned about Gunicorn, Nginx, Securing through HTTPS, Domains and Port Forwarding through my own writing below. My Flask application can be found on <a href="https://github.com/MMahoney6713/michael-mahoney-portfolio">my Github page.</a></p>
 
 
-    <hr class="major cleared" />
 
+    <hr class="major cleared" />
     <h2>Part 1: Creating a Flask app to manage routes for my portfolio</h2>
     <p>To start, I downloaded a free, Bootstrap based <a href="https://html5up.net/editorial">front-end template</a> that I will be using for the styling of my website. After a few tweaks, and removing any extra stuff that I won't be needing, the basic pages of the website are ready to be brought to life with a back-end framework life Flask. </p> 
     <p>After creating a virtual environment and installing Flask, the following kicked off my app with a simple route to show the homepage.</p>
 
-    <div class="card mb-4 ">
+    <div class="card mb-4 scrollable">
         <div class="card-header text-light bg-dark  bg-gradient">
           .../portfolio/app.py
         </div>
@@ -57,7 +57,7 @@
 
       <p>I'll also be needing a WSGI file, which will be used to direct Gunicorn in the next step once we have these files pulled over onto the Pi:</p>
 
-      <div class="card mb-4 ">
+      <div class="card mb-4 scrollable">
         <div class="card-header text-light bg-dark  bg-gradient">
           .../portfolio/WSGI.py
         </div>
@@ -73,44 +73,104 @@
 
       <p>I've made a Git repository for this portfolio project, and pushed this skeleton to Github to be pulled over onto the Pi.</p>
 
-    <hr class="major cleared" />
 
+    <hr class="major cleared" />
     <h2>Part 2: Setting up my Pi with Gunicorn and Nginx</h2>
     <p>After connecting to the Pi via SSH and accessing the terminal, I'm able to create a Git clone for the above repository, landing onto the Pi desktop as "portfolio." Here I've also created another virtual environment, and pip installed gunicorn into that environment. </p>
     
     <p>In order to receive incoming connections, Nginx (a reverse-proxy) is going to be used to accept those connections and decide what to do with them. In the case of this application, we'll be telling Nginx to receive http requests and deliver them to Gunicorn, which will serve the Flask application. As Gunicorn is WSGI compatible, it is often used to work with applications like Flask or Django which support WSGI as well. More information <a href="https://stackoverflow.com/questions/43044659/what-is-the-purpose-of-using-nginx-with-gunicorn#:~:text=Gunicorn%20is%20an%20application%20server,is%20in%20front%20of%20Gunicorn.">available here.</a> </p>
 
+    <p>To set up the Pi to start Gunicorn and serve the Flask application on server boot, we'll need to create a systemd service file to point the OS to the correct instructions. To see more information on what this file means and why certain inputs were chosen, <a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04#step-4-%E2%80%94-configuring-gunicorn">see the tutorial here</a>. Please note that the directory below is from the root directory, and is not within the Flask application directory.</p>
+
+    <div class="card mb-4 highlight scrollable">
+        <div class="card-header text-light bg-dark  bg-gradient">
+          /etc/systemd/system/app.service
+        </div>
+        <ul class="list-group list-group-flush bg-secondary">
+            <li class="list-group-item bg-secondary text-light bg-gradient">
+                [Unit] <br>
+                Description=Gunicorn instance to serve app<br>
+                After=network.target<br>
+                <br>
+                [Service]<br>
+                User=pi<br>
+                Group=www-data<br>
+                WorkingDirectory=/home/pi/portfolio<br>
+                Environment='PATH=/home/pi/portfolio/venv/bin'<br>
+                ExecStart=/home/pi/portfolio/venv/bin/gunicorn --workers 3 --bind unix:app.sock -m 007 wsgi:app<br>
+                <br>
+                [Install]<br>
+                WantedBy=multi-user.target<br>
+            </li>
+        </ul>
+    </div>
+
+    <p>Now that Gunicorn is set up and waiting for requests, we'll need to configure Nginx to work as the reverse-proxy that sends web requests to it. Again, a great explanation on how to set this file up is found <a href="">here</a> as well as <a href="https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-18-04#step-2-–-configuring-nginx-to-use-ssl">here</a>. The second link was useful in configuring more details regarding securing the application, and adding a permanent forwarding to https.</p>
+
+    <p>The resulting configuration file for Nginx:</p>
+
+    <div class="card mb-4 highlight scrollable">
+        <div class="card-header text-light bg-dark  bg-gradient">
+          /etc/nginx/sites-available/app
+        </div>
+        <ul class="list-group list-group-flush bg-secondary">
+            <li class="list-group-item bg-secondary text-light bg-gradient">
+                server { <br>
+                    <span class="ml-4">listen 443 ssl;</span><br>
+                    <span class="ml-4">listen [::]:443 ssl;</span><br>
+                    <span class="ml-4">include snippets/self-signed.conf;</span><br>
+                    <span class="ml-4">include snippets/ssl-params.conf;</span><br>
+                    <br>
+                    <span class="ml-4">server_name michael-mahoney.com www.michael-mahoney.com;</span><br>
+                    <br>
+                    <span class="ml-4">location / {</span><br>
+                        <span class="ml-4"><span class="ml-4">include proxy_params;</span></span><br>
+                        <span class="ml-4"><span class="ml-4">proxy_pass http://unix:/home/pi/portfolio/app.sock;</span></span><br>
+                    <span class="ml-4">}</span> <br>
+                    <br>
+                    <span class="ml-4">ssl_certificate /etc/letsencrypt/live/www.michael-mahoney.com/fullchain.pem; # managed by Certbot</span><br>
+                    <span class="ml-4">ssl_certificate_key /etc/letsencrypt/live/www.michael-mahoney.com/privkey.pem; # managed by Certbot</span><br>
+                    <br>
+                }<br>
+                <br>
+                server {<br>
+                    <span class="ml-4">if ($host = www.michael-mahoney.com) {</span><br>
+                        <span class="ml-4"><span class="ml-4">return 301 https://$host$request_uri;</span></span><br>
+                    <span class="ml-4">} # managed by Certbot</span><br>
+                    <br>
+                    <span class="ml-4">if ($host = michael-mahoney.com) {</span><br>
+                        <span class="ml-4"><span class="ml-4">return 301 https://$host$request_uri;</span></span><br>
+                    <span class="ml-4">} # managed by Certbot</span><br>
+                    <br>
+                    <span class="ml-4">listen 80;</span><br>
+                    <span class="ml-4">listen [::]:80;</span><br>
+                    <br>
+                    <span class="ml-4">server_name michael-mahoney.com www.michael-mahoney.com;</span><br>
+                    <br>
+                    <span class="ml-4">return 301 https://$server_name$request_uri;</span><br>
+                }
+            </li>
+        </ul>
+    </div>
+
+    <p>After restarting the Nginx process, the Pi is ready to receive requests and now it's time to set up our domain and router to point requests to the Pi.</p>
+
+
     <hr class="major cleared" />
-
     <h2>Part 3: Setting up Google Domains, Port Forwarding, and HTTPS</h2>
-    <p><span class="image right"><img src="{{ url_for('static', filename='projects/Warbler/setup3.JPG') }}" alt="" /></span>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
-    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+    <p>In order to set up a web server that anyone can access anywhere in the world, we'll need to set up a domain owner to point requests made toward our Public IP address (the address of the router you're on, NOT the IP address of the Pi - we'll get to that in a moment). In my case, I used Google Domains, and set up Dynamic DNS through them (a walkthrough is included in Google Domains' website, where I used the "API to update your Dynamic DNS record" portion of this <a href="https://support.google.com/domains/answer/6147083?hl=en">tutorial</a>).</p>
+
+    <p>Now Google will point requests made to www.michael-mahoney.com to my Public IP address. From here, my router will decide what to do with those requests and to where they will go. A great, comprehensive guide to port-forwarding, how to set it up, and what it's all about, can be found <a href="https://www.howtogeek.com/66214/how-to-forward-ports-on-your-router/">here</a>.</p>
+    
+    
 
 
+
+    <hr class="major cleared" />
     <h2>Part 4: Future Study</h2>
-    <p><span class="image right"><img src="{{ url_for('static', filename='projects/Warbler/setup3.JPG') }}" alt="" /></span>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
-    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+    <p>Having spent the last ~1 year getting acquainted with web development software for front- and back-end development, this project was a fun and challenging way to learn more about the technology that enables even the use of that web development software. I look forward to learning more about Nginx, and the capabilities it has to manage requests, balance loads, and generally act as a mediator and improve performance. With the Raspberry Pi, I'm considering hosting a couple other projects (my first capstone, previously hosted on Heroku, for example) and using that as a learning opportunity to dive deeper into Gunicorn and Nginx.</p>
 
+    <p>One more thought: As I have more understanding of what it takes to set up a web server, and guessing at what might be under the hood for something like Heroku, I think I'd like to take a stab at what working with a Cloud service provider would look like. Over the next weeks I'll be looking at setting up a server with AWS/Azure/Google Cloud, and seeing what the hype is all about!</p>
 
 </section>
 
