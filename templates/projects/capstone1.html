@@ -14,23 +14,62 @@
 <section id="content">
     <header class="main">
         <h1>"On Purpose" - a full-stack capstone project with Springboard</h1>
+        <p>November 30, 2021</p>
     </header>
 
     <span class="image main"><img src="{{ url_for('static', filename='projects/capstone1/onPurposeGif.gif') }}" alt="" /></span>
 
 
     <hr class="major cleared" />
-
     <h2>Background</h2>
-    <div><span class="image left"><img src="{{ url_for('static', filename='projects/Warbler/setup.JPG') }}" alt="" /></span></div>
-    <p>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
+    <p>Github repository is available <a href="https://github.com/MMahoney6713/purposeProjectHeroku">here</a>, and the app is hosted on Heroku, <a href="https://life-on-purpose.herokuapp.com/">here</a>.</p>
+    <p>This is a project I’m thrilled about. Not only do I have the chance to build something from the ground up, but I am also building an application that is directly useful to me and I think could be useful to others as well. Inspired by concepts from “The Seven Habits of Highly Effective People”, by Stephen Covey, as well as my own keenness to plan things out over the long term, I designed an application that equips users to do long-term planning in a more purposeful way. The basic functionality of the application empowers a user to create their life mission - the qualities that they want their life to be characterized by - and to break it down into goals across weeks and months at a time. </p>
+    <p>Until now this has been something that I’ve tediously built for myself every year using a collection of google docs. As a web application, though, the program builds the calendars for me, and will allow the saving/editing of my mission statement, mission-minded goals, and milestones. Because it’s a web application, I can then iteratively add further functionality as I want to in the future. Say goodbye, google docs!</p>
+    
+
+
+    <hr class="major cleared" />
+    <h2>Part 1: Getting familiar with Django, and developing a backend</h2>
+    <p>For this project, I focused on learning a new back-end framework - Django. With extensive Flask/Python experience, I wanted to build a web app from scratch using Django to better understand some of the differences that exist between the two frameworks.</p>
+    <p>I have received a lot of encouraging feedback from my mentor regarding my performance in the course and my comfort with the Flask materials, so I see this capstone as the perfect opportunity to challenge myself by learning Django. Django is not taught in the course, but I know that Django is very popular in the Python/Web Development world and I wanted to better understand the differences between frameworks. So far, I’ve made my way through the documentation and have a familiarity with how Django does what I was doing already with Flask, SQLAlchemy, and WTForms.</p>
+
+
+    <hr class="major cleared" />
+    <h2>Part 2: Creating the frontend</h2>
+    <p>I built the basic structure of the front end from a <a href="https://startbootstrap.com/theme/sb-admin-2">Bootstrap template from Start Bootstrap</a>, and most of the difficulties with handling the milestones have come from needing more familiarity with Bootstrap, in particular with bootstrap modals. I chose to use a modal for creating and editing milestones because I have seen them in other applications and considered that their user-experience was appropriate for this project. I found helpful built-in methods in the JQuery/Bootstrap docs that assist in changing the modal object (modalObj.modal(type-of-change)), and this has also enabled the opportunity to add event listeners to my milestones based on the changes to the modal. For instance, if the user starts the process to create a new milestone but changes their mind, the modal disappears and along with it the milestone that had been created. 
+    </p>
+    <div class="card mb-4 scrollable">
+        <div class="card-header text-light bg-dark  bg-gradient">
+            .../portfolio/WSGI.py
+        </div>
+        <ul class="list-group list-group-flush ">
+            <li class="list-group-item bg-secondary text-light bg-gradient">
+            from app import app <br>
+            <br>
+            if __name__ == "__main__":<br>
+            <span class="ml-4">app.run()</span>
+            </li>
+        </ul>
+    </div>
+
+    
+    <hr class="major cleared" />
+    <h2>Part 3: Connecting to the PostgreSQL database</h2>
+    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
+        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
+        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
+        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>    
+
+    <hr class="major cleared" />
+    <h2>Part 4: Implementing OAuth 2.0 with Django Allauth</h2>
+    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
+        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
+        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
+        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>    
+
+
+    <hr class="major cleared" />
+    <h2>Part 4: Hosting on Heroku</h2>
     <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
         interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
         egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
@@ -38,69 +77,11 @@
 
 
     <hr class="major cleared" />
+    <h2>Future Study</h2>
+    <p>Being familiar with writing tests for Flask through my coursework, I now plan to get familiar with Django's own test writing as well</p>
+    <p></p>
+    
 
-    <h2>Part 1: Fixing features and cleaning up code</h2>
-    <p><span class="image right"><img src="{{ url_for('static', filename='projects/Warbler/setup2.jpg') }}" alt="" /></span>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
-    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
-
-    <hr class="major cleared" />
-
-    <h2>Part 2: Connecting to the database, adding the "Like" button</h2>
-    <div><span class="image left"><img src="{{ url_for('static', filename='projects/Warbler/setup2.jpg') }}" alt="" /></span></div>
-    <p>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
-    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
-
-    <hr class="major cleared" />
-
-    <h2>Part 3: Adding tests</h2>
-    <p><span class="image right"><img src="{{ url_for('static', filename='projects/Warbler/setup3.JPG') }}" alt="" /></span>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
-    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
-
-    <hr class="major cleared" />
-
-    <h2>Part 4: Further Study</h2>
-    <p><span class="image right"><img src="{{ url_for('static', filename='projects/Warbler/setup3.JPG') }}" alt="" /></span>Lorem ipsum dolor
-        sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod.
-        Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-        volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt
-        felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus
-        euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-        praesent.</p>
-    <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-        interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-        egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-        Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
 </section>
 
 {% endblock %}
