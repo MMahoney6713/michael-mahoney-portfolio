@@ -5,6 +5,12 @@
 	{% endblock %}
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="Michael Mahoney's Portfolio" />
+	<meta name="title" property="og:title" content="Michael Mahoney" />
+	<meta property="og:type" content="Website" />
+	<meta name="image" property="og:image" content="{{ url_for('static', filename='images/headshot.jpg') }}" />
+	<meta name="description" property="og:description" content="Michael Mahoney's Portfolio" />
+	<meta name="author" content="Michael Mahoney" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -12,6 +18,7 @@
 		rel="stylesheet">
 	<link rel="image_src" href="{{ url_for('static', filename='images/headshot.jpg') }}">
 	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/headshot.jpg') }}">
+	
 </head>
 <body class="is-preload">
 
